@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissor</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+		function computerPlay() {
+			let max = 3;
+			let play = Math.floor(Math.random()*max);
+			if (play == 0) {
+				return "Rock";
+			} else if (play == 1) {
+				return "Paper";
+			} else {
+				return "Scissor";
+			}
+		}
+		
+		function playerPlay() {
+			let move = window.prompt("What are you going to pick?\nRock, Paper or Scissor?");
+			if (move.toLowerCase() == "rock") {
+				return "Rock";
+			} else if (move.toLowerCase() == "paper") {
+				return "Paper";
+			} else if (move.toLowerCase() == "scissor") {
+				return "Scissor";
+			}
+		}
+		
+		let wins = 0;
+		let losses = 0;
+		let ties = 0;
+		
+		function playRound(playerSelection, computerSelection) {
+			if (playerSelection == "Rock" && computerSelection == "Paper") {
+				losses++;
+				return "You have lost: "+computerSelection+" beats "+playerSelection;
+			} else if (playerSelection == "Rock" && computerSelection == "Scissor") {
+				wins++;
+				return "You have won: "+playerSelection+" beats "+computerSelection;
+			} else if (playerSelection == "Paper" && computerSelection == "Rock") {
+				wins++;
+				return "You have won: "+playerSelection+" beats "+computerSelection;
+			} else if (playerSelection == "Paper" && computerSelection == "Scissor") {
+				losses++;
+				return "You have lost: "+computerSelection+" beats "+playerSelection;
+			} if (playerSelection == "Scissor" && computerSelection == "Rock") {
+				losses++;
+				return "You have lost: "+computerSelection+" beats "+playerSelection;
+			} else if (playerSelection == "Scissor" && computerSelection == "Paper") {
+				wins++;
+				return "You have won: "+playerSelection+" beats "+computerSelection;
+			} else {
+				ties++;
+				return "It's a tie: "+playerSelection+" and "+computerSelection+" are equal.";
+			}
+		}
+
+		function winner() {
+			if (wins > losses) {
+				return "You";
+			} else if (wins < losses) {
+				return "Computer";
+			} else if (wins == losses) {
+				return "It's a tie";
+			}
+		}
+		//console.log(playRound(playerSelection, computerSelection))
+		for (let i=0; i<5; i++) {
+		const computerSelection = computerPlay();
+		const playerSelection = playerPlay();
+		console.log(playRound(playerSelection, computerSelection));
+		}
+		console.log("The winner is: "+winner());
+		console.log("Final score:\nWins: " +wins+"; Losses: "+losses+"; Ties: "+ties);
+  </script>
+</body>
+</html>
